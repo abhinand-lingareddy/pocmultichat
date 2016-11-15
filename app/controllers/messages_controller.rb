@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
   def create
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.build(message_params)
+    @message.user=current_user
 
     if @message.save
       sync_new @message , scope: Message.by_chat(@chat)
@@ -22,6 +23,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body,:user)
   end
 end
