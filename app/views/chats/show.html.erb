@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @chat.name %>
+</p>
+
+<h3>Messages</h3>
+
+
+<%= sync partial: "message_row", collection: Message.by_chat(@chat) %>
+<%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(@chat) %>
+
+
+<hr>
+
+<%= form_for([@chat, @chat.messages.build] , remote: true) do |f| %>
+    <%= f.text_field :body %>
+<% end %>
+
+<%= link_to 'Edit', edit_chat_path(@chat) %> |
+<%= link_to 'Back', chats_path %>
