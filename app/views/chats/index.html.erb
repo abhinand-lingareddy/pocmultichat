@@ -94,6 +94,7 @@
       float: left;
     }
 
+
     .popup-box .popup-head .popup-head-right
     {
       float: right;
@@ -110,6 +111,10 @@
     {
       height: 100%;
       overflow-y: scroll;
+    }
+    .popup-box .popup-messages .popup-bottom{
+      position: absolute;
+      bottom: 0;
     }
 
 
@@ -239,14 +244,16 @@
 </head>
 <body>
 
-<div id="abhinand" class="hidden">
+<div id="messages" class="hidden">
   <% @chats.each do |chat| %>
       <div id="<%= chat.name %>p"  >
       <%= sync partial: "message_row", collection: Message.by_chat(chat) %>
       <%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(chat) %>
+        <div class="popup-bottom">
         <%= form_for([chat, chat.messages.build] , remote: true) do |f| %>
             <%= f.text_field :body %>
         <% end %>
+        </div>
       </div>
   <%end%>
 </div>
