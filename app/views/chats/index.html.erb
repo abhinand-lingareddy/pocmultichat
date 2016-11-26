@@ -196,9 +196,15 @@
       element = element + '<div class="popup-head">';
       element = element + '<div class="popup-head-left">'+ name +'</div>';
       element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-      element = element + '<div style="clear: both"></div></div><div class="popup-messages">' +'</div></div>';
+      element = element + '<div style="clear: both"></div></div><div class="popup-messages" id="'+ id +"m"+'">'+ +'</div></div>';
+      $( "body" ).append( element);
+      document.getElementById(id+"m").appendChild(document.getElementById(id+"p"))
 
-      document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;
+
+
+
+
+
 
       popups.unshift(id);
 
@@ -233,27 +239,33 @@
 </head>
 <body>
 
+<div id="abhinand" class="hidden">
+  <% @chats.each do |chat| %>
+      <div id="<%= chat.name %>p"  >
+      <%= sync partial: "message_row", collection: Message.by_chat(chat) %>
+      <%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(chat) %>
+        <%= form_for([chat, chat.messages.build] , remote: true) do |f| %>
+            <%= f.text_field :body %>
+        <% end %>
+      </div>
+  <%end%>
+</div>
 
 
 <div class="chat-sidebar">
   <% @chats.each do |chat| %>
   <div class="sidebar-name">
+
+
     <!-- Pass username and display name to register popup -->
-    <a href="javascript:register_popup('<%= chat.name %>', '<%= chat.name %>' );">
+    <a href="javascript:register_popup('<%= chat.name %>', '<%= chat.name %>','' );">
       <img width="30" height="30" src="" />
       <span><%= chat.name %></span>
     </a>
   </div>
   <% end %>
 </div>
-<div class="hidden">
-<% @chats.each do |chat| %>
-    <div  id='<%= chat.name %>'>
-      <%= sync partial: "message_row", collection: Message.by_chat(chat) %>
-      <%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(chat) %>
-    </div>
-<%end%>
-</div>
+
 
 <%= link_to 'New Chat', new_chat_path %>
-<body/>
+</body>
