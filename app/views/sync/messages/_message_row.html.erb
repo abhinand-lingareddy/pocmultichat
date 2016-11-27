@@ -22,12 +22,28 @@
     font-size: 9px;
     color: #ccc;
   }
+  li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+  }
+  .li .self {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .self .chatboxmessagecontent {
+    order: 1;
+    border-bottom-right-radius: 0;
+  }
+
 </style>
+<li class="<%=  self_or_other(message) %>">
 <div class="chatboxmessagecontent">
 
       <p><%= message.body %></p>
   <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
-    <%= message.user %> • <%= message.created_at.strftime("%H:%M %p") %>
+    <%= message.user.email %> • <%= message.created_at.strftime("%H:%M %p") %>
   </time>
 </div>
+</li>
 </body>
