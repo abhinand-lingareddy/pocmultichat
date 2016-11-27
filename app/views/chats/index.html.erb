@@ -1,5 +1,5 @@
 <head>
-  <title>Facebook Style Popup Design</title>
+  <title>Expertiza Popup Design</title>
   <style>
     @media only screen and (max-width : 540px)
     {
@@ -16,7 +16,7 @@
 
     body
     {
-      background-color: #e9eaed;
+      background-color: white;
     }
     .hidden {
       display: none;
@@ -39,7 +39,7 @@
       padding-left: 10px;
       padding-right: 10px;
       margin-bottom: 4px;
-      font-size: 12px;
+      font-size: 15px;
     }
 
     .sidebar-name span
@@ -52,18 +52,17 @@
       display: block;
       height: 100%;
       text-decoration: none;
-      color: inherit;
+      color: black;
     }
 
     .sidebar-name:hover
     {
-      background-color:#e1e2e5;
+      background-color: #A90201;
     }
 
     .sidebar-name img
     {
-      width: 32px;
-      height: 32px;
+      background-image:url("http://placehold.it/40x40");
       vertical-align:middle;
     }
 
@@ -74,7 +73,7 @@
       bottom: 0px;
       right: 220px;
       height: 285px;
-      background-color: rgb(237, 239, 244);
+      background-color: #afaaaa;
       width: 300px;
       border: 1px solid rgba(29, 49, 91, .3);
     }
@@ -88,7 +87,7 @@
 
     .popup-box .popup-head
     {
-      background-color: #6d84b4;
+      background-color: #A90201;
       padding: 5px;
       color: white;
       font-weight: bold;
@@ -125,7 +124,6 @@
       position: absolute;
       bottom: 0;
     }
-
 
 
   </style>
@@ -289,7 +287,7 @@
 
     <!-- Pass username and display name to register popup -->
     <a href="javascript:register_popup('<%= chat.name %>', '<%= chat.name %>','' );">
-      <img width="30" height="30" src="" />
+      <img width="40" height="40" src="http://placehold.it/40x40" />
       <span><%= chat.name %></span>
     </a>
   </div>
