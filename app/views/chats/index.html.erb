@@ -72,16 +72,16 @@
       position: fixed;
       bottom: 0px;
       right: 220px;
-      height: 285px;
+      height: 350px;
       background-color: #afaaaa;
-      width: 300px;
-      border: 1px solid rgba(29, 49, 91, .3);
+      width: 275px;
+
     }
 
     #body_input
     {
-      width: 290px;
-      height: 20px;
+      width: 250px;
+      height: 30px;
 
     }
 
@@ -124,6 +124,8 @@
       position: absolute;
       bottom: 0;
     }
+
+
 
 
   </style>
@@ -259,7 +261,6 @@
   </script>
 </head>
 <body>
-
 <div id="messages" class="hidden">
   <% @chats.each do |chat| %>
       <div id="<%= chat.name %>partial"  >
@@ -267,11 +268,11 @@
       <%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(chat) %>
         <div class="popup-bottom">
         <%= form_for([chat, chat.messages.build] , remote: true) do |f| %>
-            <%= f.text_field :body , :id => "body_input"%>
+            <%= f.text_field :body ,:id => "body_input"%>
             <!--a href="javascript:clear('body_input');"> clear <a-->
-            
+
         <% end %>
-        
+
 
         <!--input type="button" value="Clear" onclick="clear();"--> 
         </div>
