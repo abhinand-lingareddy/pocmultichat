@@ -50,3 +50,4 @@ gem 'devise'
 gem 'faye'
 gem 'thin', require: false
 gem 'sync'
+gem 'coffee-script-source', '1.8.0'
