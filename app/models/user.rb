@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
 
 
   def to_s
-   self.email
+   self.id
   end
 end

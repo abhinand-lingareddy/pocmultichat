@@ -37,14 +37,57 @@
     border-bottom-right-radius: 0;
   }
 
+  .avatar {
+    width: 40px;
+    position: relative;
+  }
+
+  li .avatar img {
+    display: block;
+    width: 100%;
+  }
+
+  .other .avatar:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+  }
+  .self .avatar {
+    order: 2;
+  }
+
+  .self .avatar:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
 </style>
 <li class="<%=  self_or_other(message) %>">
+  <div class="avatar">
+    <img src="http://placehold.it/30x30" />
+  </div>
 <div class="chatboxmessagecontent">
-
       <p><%= message.body %></p>
   <time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%d %b  %Y at %I:%M%p") %>">
-    <%= message.user.email %> • <%= message.created_at.strftime("%H:%M %p") %>
+    <%= message.user.to_s %> • <%= message.created_at.strftime("%H:%M %p") %>
   </time>
 </div>
 </li>
+
+<script>
+</script>
+
 </body>
