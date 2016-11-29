@@ -26,12 +26,16 @@
     {
       width: 200px;
       position: fixed;
-      height: 100%;
+      height: 50%;
       right: 0px;
-      top: 0px;
+      top: 45%;
+      bottom: 5%;
       padding-top: 10px;
       padding-bottom: 10px;
       border: 1px solid rgba(29, 49, 91, .3);
+      background-color : gray;
+      display:none;
+      overflow-y:auto;
     }
 
     .sidebar-name
@@ -116,7 +120,7 @@
     .popup-box .popup-messages
     {
       height: 79%;
-      overflow-y: scroll;
+      overflow-y: auto;
       border-style: solid;
 
     }
@@ -124,8 +128,9 @@
       position: absolute;
       bottom: 0;
     }
-
-
+    .popup-bottom {
+     background-color:white;
+    }
 
 
   </style>
@@ -257,6 +262,11 @@
     //recalculate when window is loaded and also when window is resized.
     window.addEventListener("resize", calculate_popups);
     window.addEventListener("load", calculate_popups);
+    $(document).ready(function(){
+          $("#chats").click(function(){
+                $(".chat-sidebar").toggle();
+            });
+    });
 
   </script>
 </head>
@@ -297,4 +307,5 @@
 
 
 <%= link_to 'New Chat', new_chat_path %>
+<a id="chats" href=javascript:void(0)>Your Messages</a>
 </body>
