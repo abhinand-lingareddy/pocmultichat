@@ -82,7 +82,7 @@
 
     }
 
-    #body_input
+    .body_input
     {
       width: 265px;
       height: 30px;
@@ -222,9 +222,11 @@
       element = element + '<div class="popup-head">';
       element = element + '<div class="popup-head-left"><a>	&#9729;</a>'+ name +'</div>';
       element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-      element = element + '<div style="clear: both"></div></div><div class="popup-messages" id="'+ id +"messages"+'">'+ +'</div></div>';
+      element = element + '<div style="clear: both"></div></div><div class="popup-messages" id="'+ id +"messages"+'">'+'</div></div>';
       $( "body" ).append( element);
       document.getElementById(id+"messages").appendChild(document.getElementById(id+"partial"))
+      $(".popup-box").scrollTop($(".popup-box")[0].scrollHeight);
+
 
 
 
@@ -266,6 +268,8 @@
           $("#chats").click(function(){
                 $(".chat-sidebar").toggle();
             });
+      $(".popup-box .popup-messages").scrollTop($(".popup-messages").scrollHeight);
+
     });
 
   </script>
@@ -278,7 +282,7 @@
       <%= sync_new partial: "message_row", resource: Message.new, scope: Message.by_chat(chat) %>
         <div class="popup-bottom">
         <%= form_for([chat, chat.messages.build] , remote: true) do |f| %>
-            <%= f.text_field :body ,:id => "body_input"%>
+            <%= f.text_field :body ,:class => "body_input"%>
             <!--a href="javascript:clear('body_input');"> clear <a-->
 
         <% end %>
